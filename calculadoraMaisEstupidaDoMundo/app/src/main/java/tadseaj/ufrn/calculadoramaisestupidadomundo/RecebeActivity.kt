@@ -28,9 +28,11 @@ class RecebeActivity : AppCompatActivity() {
             val intent = Intent()
             val bundle = Bundle()
 
-            val e
+            val editTextVariavel = findViewById<EditText>(R.id.editTextVariavel)
+            bundle.putInt("VALOR", editTextVariavel.text.toString().toInt())
+            intent.putExtras(bundle)
 
-            setResult(RESULT_OK)
+            setResult(RESULT_OK, intent)
             finish()
         }
 

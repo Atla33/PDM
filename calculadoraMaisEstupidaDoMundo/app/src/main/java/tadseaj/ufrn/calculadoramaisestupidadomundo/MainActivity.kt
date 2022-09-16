@@ -25,6 +25,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    val setVariavelYlauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result ->
+        if(result.resultCode == RESULT_OK){
+            variavelX = result.data!!.getIntExtra("VALOR", 0)
+            val textViewVariávelX = findViewById<TextView>(R.id.textViewVariávelX)
+            textViewVariávelX.text ="${variavelX}"
+        }else{
+            Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,16 +62,17 @@ class MainActivity : AppCompatActivity() {
             bundle.putInt("VALOR", variavelX)
             intent.putExtras(bundle)
 
-            startActivity(intent)
+            setVariavelXlauncher.launch(intent)
         }
         buttonSetVariávelY.setOnClickListener {
             val intent = Intent(this, RecebeActivity::class.java)
-            startActivity(intent)
 
             val bundle = Bundle()
             bundle.putString("VARIAVEL", "Variavel Y")
             bundle.putInt("VALOR", variavelX)
             intent.putExtras(bundle)
+
+            setVariavelYlauncher.launch(intent)
         }
 
         buttonSetCalcular.setOnClickListener {
