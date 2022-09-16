@@ -22,7 +22,7 @@ class RecebeActivity : AppCompatActivity() {
         editTextVariavel.setText(valor.toString())
 
         val buttonOK = findViewById<Button>(R.id.buttonOK)
-        val buttonCancelar = findViewById<Button>(R.id.buttonOK)
+        val buttonCancelar = findViewById<Button>(R.id.buttonCancelar)
 
         buttonOK.setOnClickListener {
             val intent = Intent()

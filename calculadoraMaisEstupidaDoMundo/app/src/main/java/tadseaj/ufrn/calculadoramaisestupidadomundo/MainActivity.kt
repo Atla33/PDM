@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     val setVariavelYlauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if(result.resultCode == RESULT_OK){
-            variavelX = result.data!!.getIntExtra("VALOR", 0)
-            val textViewVariávelX = findViewById<TextView>(R.id.textViewVariávelX)
-            textViewVariávelX.text ="${variavelX}"
+            variavelY = result.data!!.getIntExtra("VALOR", 0)
+            val textViewVariávelY = findViewById<TextView>(R.id.textViewVariávelY)
+            textViewVariávelY.text ="${variavelY}"
         }else{
             Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
         }
@@ -69,14 +69,16 @@ class MainActivity : AppCompatActivity() {
 
             val bundle = Bundle()
             bundle.putString("VARIAVEL", "Variavel Y")
-            bundle.putInt("VALOR", variavelX)
+            bundle.putInt("VALOR", variavelY)
             intent.putExtras(bundle)
 
             setVariavelYlauncher.launch(intent)
         }
 
         buttonSetCalcular.setOnClickListener {
+            textViewResultado.text = (variavelX + variavelY).toString()
             Toast.makeText(this, getString(R.string.realizando_calculos), Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, getString(R.string.realizando_calculos), Toast.LENGTH_SHORT).show()
         }
     }
 }
