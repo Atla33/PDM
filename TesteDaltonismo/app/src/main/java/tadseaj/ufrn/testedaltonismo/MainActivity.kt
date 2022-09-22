@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import tadseaj.ufrn.testedaltonismo.databinding.ActivityMainBinding
 import tadseaj.ufrn.testedaltonismo.databinding.ActivityRespostaBinding
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    lateinit var bindingg: ActivityRespostaBinding
 
     val setResposta1launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 
             val bundle = Bundle()
 
+            bundle.putInt("imagem", R.drawable._4)
             bundle.putString("VARIAVEL", "resposta 1")
             bundle.putString("0", resposta1)
             intent.putExtras(bundle)
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             val bundle = Bundle()
 
+            bundle.putInt("imagem", R.drawable._7)
             bundle.putString("VARIAVEL", "resposta 2")
             bundle.putString("0", resposta2)
             intent.putExtras(bundle)
@@ -91,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
             val bundle = Bundle()
 
+            bundle.putInt("imagem", R.drawable._8)
             bundle.putString("VARIAVEL", "resposta 3")
             bundle.putString("0", resposta3)
             intent.putExtras(bundle)
