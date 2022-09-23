@@ -1,5 +1,6 @@
 package tadseaj.ufrn.testedaltonismo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,5 +19,20 @@ class RespostaActivity : AppCompatActivity() {
         val imagem = intent.extras?.getInt("imagem")
         binding.imageBoneco.setImageResource(imagem!!)
         Log.i("imagem", "$imagem")
+
+        binding.buttonOkResposta.setOnClickListener{
+
+            val intent = Intent()
+            val bundle = Bundle()
+
+            val respostas = intent.extras?.getString("0")
+
+        }
+
+        binding.buttonCancelar.setOnClickListener {
+            setResult(RESULT_CANCELED)
+            finish()
+        }
+
     }
 }

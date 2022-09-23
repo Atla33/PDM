@@ -64,8 +64,7 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putInt("imagem", R.drawable._4)
-            bundle.putString("VARIAVEL", "resposta 1")
-            bundle.putString("0", resposta1)
+            bundle.putString("0", R.id.textViewResposta1.toString())
             intent.putExtras(bundle)
 
             setResposta1launcher.launch(intent)
@@ -79,8 +78,7 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putInt("imagem", R.drawable._7)
-            bundle.putString("VARIAVEL", "resposta 2")
-            bundle.putString("0", resposta2)
+            bundle.putString("0", R.id.textViewResposta2.toString())
             intent.putExtras(bundle)
 
             setResposta2launcher.launch(intent)
@@ -94,12 +92,29 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putInt("imagem", R.drawable._8)
-            bundle.putString("VARIAVEL", "resposta 3")
-            bundle.putString("0", resposta3)
+            bundle.putString("0", R.id.textViewResposta3.toString())
             intent.putExtras(bundle)
 
             setResposta3launcher.launch(intent)
 
+        }
+
+        binding.buttonResultado.setOnClickListener{
+
+            if (binding.textViewResposta1.text == "74" || binding.textViewResposta2.text == "57" || binding.textViewResposta3.text == "8"){
+
+                Toast.makeText(this, "Você não e daltônico", Toast.LENGTH_SHORT).show()
+
+            }
+            if(binding.textViewResposta1.text == "0" || binding.textViewResposta2.text == "0" || binding.textViewResposta3.text == "0"){
+
+                Toast.makeText(this, "Coloque suas respostas", Toast.LENGTH_SHORT).show()
+
+            }else{
+
+                Toast.makeText(this, "Vá ao oftalmologista", Toast.LENGTH_SHORT).show()
+
+            }
         }
     }
 }
