@@ -13,9 +13,7 @@ import tadseaj.ufrn.testedaltonismo.databinding.ActivityRespostaBinding
 
 class MainActivity : AppCompatActivity() {
 
-    var resposta1 = "0";
-    var resposta2 = "0";
-    var resposta3 = "0";
+    var desafioResposta = Resposta("","","")
 
     lateinit var binding: ActivityMainBinding
 
@@ -23,9 +21,7 @@ class MainActivity : AppCompatActivity() {
     val setResposta1launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if(result.resultCode == RESULT_OK){
-            resposta1 = result.data!!.getStringExtra("0").toString()
-            val textViewResposta1 = findViewById<TextView>(R.id.textViewResposta1)
-            textViewResposta1.text ="${resposta1}"
+            desafioResposta.r1 = result.data!!.getStringExtra("RESULTADO").toString()
         }else{
             Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
         }
@@ -34,9 +30,7 @@ class MainActivity : AppCompatActivity() {
     val setResposta2launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if(result.resultCode == RESULT_OK){
-            resposta2 = result.data!!.getStringExtra("0").toString()
-            val textViewResposta2 = findViewById<TextView>(R.id.textViewResposta2)
-            textViewResposta2.text ="${resposta2}"
+            desafioResposta.r2 = result.data!!.getStringExtra("RESULTADO").toString()
         }else{
             Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
         }
@@ -45,9 +39,7 @@ class MainActivity : AppCompatActivity() {
     val setResposta3launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if(result.resultCode == RESULT_OK){
-            resposta3 = result.data!!.getStringExtra("0").toString()
-            val textViewResposta3 = findViewById<TextView>(R.id.textViewResposta3)
-            textViewResposta3.text ="${resposta2}"
+            desafioResposta.r3 = result.data!!.getStringExtra("RESULTADO").toString()
         }else{
             Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
         }
@@ -64,7 +56,6 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putInt("imagem", R.drawable._4)
-            bundle.putString("0", R.id.textViewResposta1.toString())
             intent.putExtras(bundle)
 
             setResposta1launcher.launch(intent)
@@ -78,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putInt("imagem", R.drawable._7)
-            bundle.putString("0", R.id.textViewResposta2.toString())
             intent.putExtras(bundle)
 
             setResposta2launcher.launch(intent)
@@ -92,7 +82,6 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
 
             bundle.putInt("imagem", R.drawable._8)
-            bundle.putString("0", R.id.textViewResposta3.toString())
             intent.putExtras(bundle)
 
             setResposta3launcher.launch(intent)
@@ -101,20 +90,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonResultado.setOnClickListener{
 
-            if (binding.textViewResposta1.text == "74" || binding.textViewResposta2.text == "57" || binding.textViewResposta3.text == "8"){
+            binding.textViewResultado.text = desafioResposta.resuldadoResposta()
 
-                Toast.makeText(this, "Você não e daltônico", Toast.LENGTH_SHORT).show()
-
-            }
-            if(binding.textViewResposta1.text == "0" || binding.textViewResposta2.text == "0" || binding.textViewResposta3.text == "0"){
-
-                Toast.makeText(this, "Coloque suas respostas", Toast.LENGTH_SHORT).show()
-
-            }else{
-
-                Toast.makeText(this, "Vá ao oftalmologista", Toast.LENGTH_SHORT).show()
-
-            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.rd = desafioResposta
     }
 }

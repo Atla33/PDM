@@ -16,16 +16,21 @@ class RespostaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_resposta)
 
-        val imagem = intent.extras?.getInt("imagem")
-        binding.imageBoneco.setImageResource(imagem!!)
-        Log.i("imagem", "$imagem")
+       // val imagem = intent.extras?.getInt("imagem")
+       // binding.imageBoneco.setImageResource(imagem!!)
+
+        binding.imageBoneco.setImageResource(intent.extras!!.getInt("imagem"))
+
 
         binding.buttonOkResposta.setOnClickListener{
 
             val intent = Intent()
             val bundle = Bundle()
 
-            val respostas = intent.extras?.getString("0")
+            bundle.putString("RESULTADO", binding.editTextResposta.text.toString())
+            intent.putExtras(bundle)
+            setResult(RESULT_OK, intent)
+            finish()
 
         }
 
