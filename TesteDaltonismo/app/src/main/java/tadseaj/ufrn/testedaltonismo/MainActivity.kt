@@ -90,7 +90,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonResultado.setOnClickListener{
 
-            binding.textViewResultado.text = desafioResposta.resuldadoResposta()
+            val resultado = desafioResposta.resuldadoResposta()
+            if (resultado.equals("Você deixou algum desafio em branco")) {
+                Toast.makeText(this, desafioResposta.resuldadoResposta(), Toast.LENGTH_SHORT).show()
+                binding.textViewResultado.text = ""
+            } else {
+                binding.textViewResultado.text = desafioResposta.resuldadoResposta()
+            }
+
+            /*binding.textViewResultado.text = desafioResposta.resuldadoResposta()*/
 
         }
     }
